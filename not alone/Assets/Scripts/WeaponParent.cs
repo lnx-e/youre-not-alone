@@ -13,6 +13,8 @@ public class WeaponParent : MonoBehaviour
     public Transform circleOrigin;
     public float radius;
 
+    public int SwordDamage = 1;
+
     private void FixedUpdate()
     {
         Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
@@ -41,11 +43,11 @@ public class WeaponParent : MonoBehaviour
     {
         foreach(Collider2D collider in Physics2D.OverlapCircleAll(circleOrigin.position, radius))
         {
-            //Debug.Log(collider.name);
+            Debug.Log(collider.name);
             Health health;
             if (health = collider.GetComponent<Health>())
             {
-                health.GetHit(1, transform.parent.gameObject);
+                health.GetHit(SwordDamage, transform.parent.gameObject);
             }
         }
     }
