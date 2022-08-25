@@ -5,10 +5,20 @@ using UnityEngine.Events;
 
 public class AnimationEventHelper : MonoBehaviour
 {
-    public UnityEvent OnAttackPerformed;
+    public UnityEvent OnAttackPerformed, TrailStart, TrailEnd;
 
     public void TriggerAttack()
     {
         OnAttackPerformed?.Invoke();
+    }
+
+    public void TrailBegin()
+    {
+        TrailStart?.Invoke();
+    }
+
+    public void TrailFinish()
+    {
+        TrailEnd?.Invoke();
     }
 }

@@ -5,31 +5,37 @@ using UnityEngine;
 public class WeaponParent : MonoBehaviour
 {
     public GameObject myPlayer;
-
     public Animator Animator;
-    public float delay = 0.3f;
-    private bool attackBlocked;
+    public Player player;
 
     public Transform circleOrigin;
     public float radius;
 
-    public int SwordDamage = 1;
+    public int SwordDamage;
 
-    private void FixedUpdate()
+    public GameObject trail;
+    private TrailRenderer trailRenderer;
+
+    private void Start()
     {
-        Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-
-        difference.Normalize();
-
-        float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-
-        transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
-
+        trailRenderer = trail.GetComponent<TrailRenderer>();
+        trailRenderer.enabled = false;
+        SwordDamage = player.swordDamage;
     }
 
     public void Attack()
     {
         Animator.SetTrigger("Attack");    
+    }
+
+    public void TrailStart()
+    {
+        trailRenderer.enabled = true;
+    }
+
+    public void TrailEnd()
+    {
+        trailRenderer.enabled = false;
     }
 
     private void OnDrawGizmosSelected()
@@ -43,7 +49,7 @@ public class WeaponParent : MonoBehaviour
     {
         foreach(Collider2D collider in Physics2D.OverlapCircleAll(circleOrigin.position, radius))
         {
-            Debug.Log(collider.name);
+            //Debug.Log(collider.name);
             Health health;
             if (health = collider.GetComponent<Health>())
             {

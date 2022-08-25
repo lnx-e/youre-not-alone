@@ -8,10 +8,9 @@ public class Health : MonoBehaviour
     [SerializeField]
     private int currentHealth, maxHealth;
 
-    public UnityEvent<GameObject> OnHitWithReference, OnDeathWithReference;
 
     [SerializeField]
-    private bool isDead = false;
+    private bool isDead = false; 
 
     public void InitializeHealth(int healthValue)
     {
@@ -28,14 +27,13 @@ public class Health : MonoBehaviour
             return;
 
         currentHealth -= amount;
-
+        
         if (currentHealth > 0)
         {
-            OnHitWithReference?.Invoke(sender);
+
         }
         else
         {
-            OnDeathWithReference?.Invoke(sender);
             isDead = true;
             Destroy(gameObject);
         }

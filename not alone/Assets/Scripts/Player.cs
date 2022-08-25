@@ -7,11 +7,14 @@ public class Player : MonoBehaviour
     Rigidbody2D rb;
     Vector3 movementVector;
     private WeaponParent weaponParent;
+    public PlayerHealth health;
     public GameObject weapon;
+    public GameObject ob;
 
     [SerializeField] float speed = 5;
 
-
+    public int pHealth;
+    public int swordDamage = 2;
 
     public float autoAttackCooldown;
     public float autoAttackCurTime;
@@ -22,6 +25,12 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         movementVector = new Vector3();
         weaponParent = weapon.GetComponent<WeaponParent>();
+        
+    }
+
+    private void Start()
+    {
+        health.InitializeHealth(pHealth);
     }
 
     // Update is called once per frame
@@ -43,17 +52,12 @@ public class Player : MonoBehaviour
             weaponParent.Attack();
             autoAttackCurTime = 0;
         }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            health.GetHit(1, ob);
+        }
     }
 
-    private void FixedUpdate()
-    {
-        Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-
-        difference.Normalize();
-
-        float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-
-        transform.rotation = Quaternion.Euler(0f, 0f, rotationZ -= 90);
-
-    }
+    
 }
