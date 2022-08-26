@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {  
         agentMovement.MovementInput = MovementInput;
 
         //auto attack
@@ -51,7 +51,6 @@ public class Player : MonoBehaviour
             autoAttackCurTime = 0;
         }
     }
-
    
     private void OnCollisionStay2D(Collision2D col)
     {
@@ -61,6 +60,5 @@ public class Player : MonoBehaviour
             health.GetHit(attackDamage, col.transform.gameObject);
         }else return;
     }
-
 
 }

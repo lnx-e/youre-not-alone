@@ -21,9 +21,6 @@ public class EnemyAI : MonoBehaviour
     private float attackDistance = 0.5f;
 
     //Inputs sent from the Enemy AI to the Enemy controller
-    public UnityEvent OnAttackPressed;
-    public UnityEvent<Vector2> OnMovementInput, OnPointerInput;
-
     public UnityEvent<Vector2> OnMovementInput;
 
     [SerializeField]
@@ -63,6 +60,4 @@ public class EnemyAI : MonoBehaviour
         OnMovementInput?.Invoke(movementInput);
     }
 
-
-    }
 }
