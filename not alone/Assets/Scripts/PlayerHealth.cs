@@ -7,15 +7,13 @@ public class PlayerHealth : MonoBehaviour
     public HealthBar healthBar;
 
     [SerializeField]
-    private int currentHealth, maxHealth;
+    private float currentHealth, maxHealth;
 
 
     [SerializeField]
     private bool isDead = false;
 
-    
-
-    public void InitializeHealth(int healthValue)
+    public void InitializeHealth(float healthValue)
     {
         currentHealth = healthValue;
         maxHealth = healthValue;
@@ -23,13 +21,13 @@ public class PlayerHealth : MonoBehaviour
         isDead = false;
     }
 
-    public void GetHit(int amount, GameObject sender)
+    public void GetHit(float amount, GameObject sender)
     {
         if (isDead)
             return;
         if (sender.layer == gameObject.layer)
             return;
-
+        Debug.Log("taken damage");
         currentHealth -= amount;
         healthBar.SetHealth(currentHealth);
 

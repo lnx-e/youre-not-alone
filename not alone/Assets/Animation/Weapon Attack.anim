@@ -1000,10 +1000,10 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.083333336
+  - time: 0.05
     functionName: TriggerAttack
     data: 
-    objectReferenceParameter: {fileID: -1917137690, guid: ea0c099a871ee1d44916cf8c576d870f, type: 3}
+    objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0

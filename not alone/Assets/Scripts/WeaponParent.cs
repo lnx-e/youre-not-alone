@@ -20,7 +20,7 @@ public class WeaponParent : MonoBehaviour
     {
         trailRenderer = trail.GetComponent<TrailRenderer>();
         trailRenderer.enabled = false;
-        SwordDamage = player.swordDamage;
+        SwordDamage = player.pDamage;
     }
 
     public void Attack()
@@ -49,12 +49,12 @@ public class WeaponParent : MonoBehaviour
     {
         foreach(Collider2D collider in Physics2D.OverlapCircleAll(circleOrigin.position, radius))
         {
-            //Debug.Log(collider.name);
-            Health health;
-            if (health = collider.GetComponent<Health>())
+            Debug.Log(collider.name);
+            Health health = collider.gameObject.GetComponent<Health>();
+            if (collider.CompareTag("Enemy"))
             {
-                health.GetHit(SwordDamage, transform.parent.gameObject);
-            }
+                health.GetHit(SwordDamage, transform.parent.parent.gameObject);                
+            }else return;
         }
     }
 }

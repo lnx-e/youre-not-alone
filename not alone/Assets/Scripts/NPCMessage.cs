@@ -6,8 +6,7 @@ using UnityEngine.UI;
 public class NPCMessage : MonoBehaviour
 {
     public GameObject text;
-
-    void OnTriggerEnter(Collider col)
+    private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Player"))
         {
@@ -15,10 +14,9 @@ public class NPCMessage : MonoBehaviour
             text.GetComponent<Text>().text = "You need 200 coins to exit this cave";
             Debug.Log("yo");
         }
-            
     }
 
-    void OnTriggerExit(Collider col)
+    private void OnTriggerExit2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Player"))
         {
