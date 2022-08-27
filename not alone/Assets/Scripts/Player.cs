@@ -1,31 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    Rigidbody2D rb;
-    Vector3 movementVector;
-    private WeaponParent weaponParent;
-    public PlayerHealth health;
-    public GameObject weapon;
-    public GameObject ob;
+    public AgentMovement agentMovement;
 
-    [SerializeField] float speed = 5;
+    private WeaponParent weaponParent;
+    private PlayerHealth health;
+    public GameObject weapon;
+
+    private Vector2 movementInput;
 
     public int pHealth;
-    public int swordDamage = 2;
+    public int pDamage = 2;
 
     public float autoAttackCooldown;
     public float autoAttackCurTime;
 
+
+    public Vector2 MovementInput { get => movementInput; set => movementInput = value; }
+
     // Start is called before the first frame update
     void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-        movementVector = new Vector3();
         weaponParent = weapon.GetComponent<WeaponParent>();
-        
+        health = GetComponent<PlayerHealth>();
     }
 
     private void Start()
@@ -35,14 +36,10 @@ public class Player : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        movementVector.x = Input.GetAxisRaw("Horizontal");
-        movementVector.y = Input.GetAxisRaw("Vertical");
+    {  
+        agentMovement.MovementInput = MovementInput;
 
-        movementVector *= speed;
-
-        rb.velocity = movementVector;
-
+        //auto attack
         if (autoAttackCurTime < autoAttackCooldown)
         {
             autoAttackCurTime += Time.deltaTime;
@@ -52,12 +49,15 @@ public class Player : MonoBehaviour
             weaponParent.Attack();
             autoAttackCurTime = 0;
         }
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            health.GetHit(1, ob);
-        }
     }
 
-    
+    private void OnCollisionStay2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Enemy"))
+        {
+            float attackDamage = col.gameObject.GetComponent<Enemy>().attackDamage;
+            health.GetHit(attackDamage, col.transform.gameObject);
+        }else return;
+    }
+
 }

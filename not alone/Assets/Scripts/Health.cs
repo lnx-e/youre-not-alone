@@ -6,11 +6,15 @@ using UnityEngine.Events;
 public class Health : MonoBehaviour
 {
     [SerializeField]
-    private int currentHealth, maxHealth;
-
+    private float currentHealth, maxHealth;
 
     [SerializeField]
-    private bool isDead = false; 
+    private bool isDead = false;
+
+    public GameObject coin;
+
+    [SerializeField]
+    private SimpleFlash flashEffect;
 
     public void InitializeHealth(int healthValue)
     {
@@ -19,15 +23,19 @@ public class Health : MonoBehaviour
         isDead = false;
     }
 
-    public void GetHit(int amount, GameObject sender)
+    public void GetHit(float amount, GameObject sender)
     {
         if (isDead)
             return;
         if (sender.layer == gameObject.layer)
             return;
 
+        Vector2 postion = transform.position;
+
         currentHealth -= amount;
-        
+
+        flashEffect.Flash();
+
         if (currentHealth > 0)
         {
 
@@ -35,6 +43,7 @@ public class Health : MonoBehaviour
         else
         {
             isDead = true;
+            Instantiate(coin, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }

@@ -13,29 +13,15 @@ public class WeaponParent : MonoBehaviour
 
     public int SwordDamage;
 
-    public GameObject trail;
-    private TrailRenderer trailRenderer;
 
     private void Start()
     {
-        trailRenderer = trail.GetComponent<TrailRenderer>();
-        trailRenderer.enabled = false;
-        SwordDamage = player.swordDamage;
+        SwordDamage = player.pDamage;
     }
 
     public void Attack()
     {
         Animator.SetTrigger("Attack");    
-    }
-
-    public void TrailStart()
-    {
-        trailRenderer.enabled = true;
-    }
-
-    public void TrailEnd()
-    {
-        trailRenderer.enabled = false;
     }
 
     private void OnDrawGizmosSelected()
@@ -49,12 +35,11 @@ public class WeaponParent : MonoBehaviour
     {
         foreach(Collider2D collider in Physics2D.OverlapCircleAll(circleOrigin.position, radius))
         {
-            //Debug.Log(collider.name);
-            Health health;
-            if (health = collider.GetComponent<Health>())
+            Health health = collider.gameObject.GetComponent<Health>();
+            if (collider.CompareTag("Enemy"))
             {
-                health.GetHit(SwordDamage, transform.parent.gameObject);
-            }
+                health.GetHit(SwordDamage, transform.parent.parent.gameObject);                
+            }else return;
         }
     }
 }
