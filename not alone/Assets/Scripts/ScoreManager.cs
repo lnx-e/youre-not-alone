@@ -5,21 +5,14 @@ using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
-    public static ScoreManager instance;
     public TextMeshProUGUI text;
     int score;
+    public int newScore = 0;
 
-    void Start()
+    public void Update()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
-    }
-
-    public void ChangeScore(int CoinValue)
-    {
-        score += CoinValue;
+        score += newScore;
+        newScore = 0;
         text.text = score.ToString();
     }
 }

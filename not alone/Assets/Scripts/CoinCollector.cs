@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class CoinCollector : MonoBehaviour
 {
-    private AudioSource audioSource;
+    ScoreManager scoreManagerScript;
+    GameObject scoreManager;
 
     private void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        scoreManager = GameObject.Find("ScoreManager");
+        scoreManagerScript = scoreManager.GetComponent<ScoreManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Coins"))
+        if (other.CompareTag("Coins"))
         {
+            scoreManagerScript.newScore = other.GetComponent<coin>().CoinValue;
             Destroy(other.gameObject);
-            audioSource.Play();
         }
     }
 }
