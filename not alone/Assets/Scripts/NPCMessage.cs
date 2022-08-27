@@ -1,18 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class NPCMessage : MonoBehaviour
 {
-    public GameObject text;
+    public TextMeshProUGUI text;
+
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Player"))
         {
-            text.SetActive(true);
-            text.GetComponent<Text>().text = "You need 200 coins to exit this cave";
-            Debug.Log("yo");
+            
+            text.text = "You need 200 coins to exit this cave";
         }
     }
 
@@ -20,8 +21,8 @@ public class NPCMessage : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Player"))
         {
-            text.SetActive(false);
-            text.GetComponent<Text>().text = "";
+            
+            text.text = "";
         }
     }
 

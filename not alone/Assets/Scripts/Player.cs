@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 {
     public AgentMovement agentMovement;
 
+
     private WeaponParent weaponParent;
     private PlayerHealth health;
     public GameObject weapon;
@@ -61,6 +62,5 @@ public class Player : MonoBehaviour
             health.GetHit(attackDamage, col.transform.gameObject);
         }else return;
     }
-
 
 }
