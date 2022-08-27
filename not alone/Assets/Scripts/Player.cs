@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     public float autoAttackCooldown;
     public float autoAttackCurTime;
 
+
     public Vector2 MovementInput { get => movementInput; set => movementInput = value; }
 
     // Start is called before the first frame update
@@ -30,14 +31,12 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-
         health.InitializeHealth(pHealth);
-        
     }
 
     // Update is called once per frame
     void Update()
-    {
+    {  
         agentMovement.MovementInput = MovementInput;
 
         //auto attack
@@ -52,15 +51,13 @@ public class Player : MonoBehaviour
         }
     }
 
-   
     private void OnCollisionStay2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Enemy"))
         {
-            float attackDamage = col.gameObject.GetComponent<Agent>().attackDamage;
+            float attackDamage = col.gameObject.GetComponent<Enemy>().attackDamage;
             health.GetHit(attackDamage, col.transform.gameObject);
         }else return;
     }
-
 
 }
