@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
             autoAttackCurTime = 0;
         }
     }
-   
+
     private void OnCollisionStay2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Enemy"))

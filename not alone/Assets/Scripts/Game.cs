@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cursor : MonoBehaviour
+public class Game : MonoBehaviour
 {
     public GameObject player;
     public GameObject playerSpawn;
