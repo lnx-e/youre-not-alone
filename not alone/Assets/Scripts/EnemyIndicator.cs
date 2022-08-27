@@ -21,7 +21,6 @@ public class EnemyIndicator : MonoBehaviour
     {
         EnemyInSight enemyInSight = visionCone.GetComponent<EnemyInSight>();
 
-
         if (enemyInSight.enemyInView == false)
         {
             if(indicator.activeSelf == false)
