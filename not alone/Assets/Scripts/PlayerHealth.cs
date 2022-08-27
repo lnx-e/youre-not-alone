@@ -27,7 +27,6 @@ public class PlayerHealth : MonoBehaviour
             return;
         if (sender.layer == gameObject.layer)
             return;
-        Debug.Log("taken damage");
         currentHealth -= amount;
         healthBar.SetHealth(currentHealth);
 

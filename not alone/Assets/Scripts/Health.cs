@@ -13,6 +13,9 @@ public class Health : MonoBehaviour
 
     public GameObject coin;
 
+    [SerializeField]
+    private SimpleFlash flashEffect;
+
     public void InitializeHealth(int healthValue)
     {
         currentHealth = healthValue;
@@ -30,7 +33,9 @@ public class Health : MonoBehaviour
         Vector2 postion = transform.position;
 
         currentHealth -= amount;
-        
+
+        flashEffect.Flash();
+
         if (currentHealth > 0)
         {
 
