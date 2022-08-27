@@ -43,8 +43,8 @@ public class Health : MonoBehaviour
         else
         {
             isDead = true;
-            Instantiate(coin, transform.position, Quaternion.identity);
             Destroy(gameObject);
+            Instantiate(coin, transform.position, Quaternion.identity);
         }
     }
 }
