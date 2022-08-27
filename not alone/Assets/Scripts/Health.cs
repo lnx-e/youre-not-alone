@@ -9,7 +9,10 @@ public class Health : MonoBehaviour
     private float currentHealth, maxHealth;
 
     [SerializeField]
-    private bool isDead = false; 
+    private bool isDead = false;
+
+    [SerializeField]
+    private SimpleFlash flashEffect;
 
     public void InitializeHealth(int healthValue)
     {
@@ -26,7 +29,9 @@ public class Health : MonoBehaviour
             return;
 
         currentHealth -= amount;
-        
+
+        flashEffect.Flash();
+
         if (currentHealth > 0)
         {
 
