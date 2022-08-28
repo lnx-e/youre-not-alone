@@ -1,78 +1,108 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.UI;
+
 [System.Serializable]
-public class Waves
+
+public class Wave
+
 {
+
     public string waveName;
+
+    public int noOfEnemies;
+
     public GameObject[] typeOfEnemies;
+
     public float spawnInterval;
-    public int waveDuration;
+
 }
 
 public class SpawnManager : MonoBehaviour
+
 {
-    [SerializeField] Waves[] waves;
+
+    public Wave[] waves;
+
     public Transform[] spawnPoints;
-    public float delayBetweenWaves;
 
-    private Waves currentWave;
-    private int currentWaveNumber = -1;
+    
+
+    private Wave currentWave;
+
+    private int currentWaveNumber;
+
     private float nextSpawnTime;
+
     private bool canSpawn = true;
-    [SerializeField]
-    private int currentTime;
 
-    private Timer timer;
 
-    private void Start()
-    {
-        timer = GameObject.Find("GameManager").GetComponent<Timer>();
-        
-    }
+
 
     private void Update()
+
     {
+
         currentWave = waves[currentWaveNumber];
-        Debug.Log(waves[currentWaveNumber].waveName);
-        currentTime = (int)Mathf.Round(timer.timeLeft);
+
         SpawnWave();
-        
-        if (currentWave.waveDuration == currentTime && !canSpawn && currentWaveNumber + 1 != waves.Length)
-        {            
-            currentWaveNumber++;
-            StartCoroutine(WaitBetweenWaves());
-            
-        }
-    }
 
-    IEnumerator WaitBetweenWaves()
-    {
-        Debug.Log("waiting");
-        yield return new WaitForSecondsRealtime(delayBetweenWaves);
-        canSpawn = true;
-        Debug.Log("start spawn");
-    }
+        GameObject[] totalEnemies = GameObject.FindGameObjectsWithTag("Enemy");
 
-    void SpawnWave()
-    {
-        if(canSpawn && nextSpawnTime < Time.time)
+        if (totalEnemies.Length == 0)
+
         {
-            StopCoroutine(WaitBetweenWaves());
-            GameObject randomEnemy = currentWave.typeOfEnemies[Random.Range(0, currentWave.typeOfEnemies.Length)];
-            Transform randomSpawnLocation = spawnPoints[Random.Range(0, spawnPoints.Length)];
-            Instantiate(randomEnemy, randomSpawnLocation.position, Quaternion.identity);
-            nextSpawnTime = Time.time + currentWave.spawnInterval;
 
-            if(currentWave.waveDuration == currentTime)
+            if (currentWaveNumber + 1 != waves.Length)
+
             {
-                canSpawn = false;
-                Debug.Log("stop spawn");
 
+                currentWaveNumber++;
+
+                canSpawn = true;
+
+
+            }
+            else
+            {
             }
 
         }
-        
+
+
+
     }
+
+    
+
+    void SpawnWave()
+
+    {
+
+        if (canSpawn && nextSpawnTime < Time.time)
+
+        {
+
+            GameObject randomEnemy = currentWave.typeOfEnemies[Random.Range(0, currentWave.typeOfEnemies.Length)];
+
+            Transform randomPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+
+            Instantiate(randomEnemy, randomPoint.position, Quaternion.identity);
+
+            currentWave.noOfEnemies--;
+
+            nextSpawnTime = Time.time + currentWave.spawnInterval;
+
+            if (currentWave.noOfEnemies == 0)
+
+            {
+                canSpawn = false;
+            }
+
+        }
+
+
+
+    }
+
 }

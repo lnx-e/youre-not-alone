@@ -116,7 +116,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8116428228290479602}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.19, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -278,6 +278,7 @@ MonoBehaviour:
   maxHealth: 0
   isDead: 0
   coin: {fileID: 8258607476217117538, guid: 1f3766ddb7a47b141841fb49ee529b9e, type: 3}
+  enemy: {fileID: 8116428228290479602}
   flashEffect: {fileID: 8116428228685300819}
   animator: {fileID: 5748229991171084827}
 --- !u!114 &9064681186377678784
@@ -412,7 +413,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.28
+  m_Radius: 0.25
 --- !u!95 &5748229991171084827
 Animator:
   serializedVersion: 4

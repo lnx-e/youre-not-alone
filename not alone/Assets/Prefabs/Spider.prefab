@@ -173,6 +173,7 @@ MonoBehaviour:
   maxHealth: 0
   isDead: 0
   coin: {fileID: 8258607476217117538, guid: 1f3766ddb7a47b141841fb49ee529b9e, type: 3}
+  enemy: {fileID: 4917461073033028158}
   flashEffect: {fileID: 1170791630374029747}
   animator: {fileID: 1504274636267376966}
 --- !u!114 &3142302159283801112

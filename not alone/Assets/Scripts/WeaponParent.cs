@@ -34,13 +34,20 @@ public class WeaponParent : MonoBehaviour
 
     public void DetectColliders()
     {
-        foreach(Collider2D collider in Physics2D.OverlapCircleAll(circleOrigin.position, radius, whatIsEnemies))
+        //foreach(Collider2D collider in Physics2D.OverlapCircleAll(circleOrigin.position, radius, whatIsEnemies))
+        //{
+        //    Health health = collider.gameObject.GetComponent<Health>();
+        //    if (collider.CompareTag("Enemy"))
+        //    {
+        //        Debug.Log(collider.name);
+        //        health.GetHit(SwordDamage, transform.parent.parent.gameObject);                
+        //    }else return;
+        //}
+        
+        Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(circleOrigin.position, radius, whatIsEnemies);
+        for(int i = 0; i < enemiesToDamage.Length; i++)
         {
-            Health health = collider.gameObject.GetComponent<Health>();
-            if (collider.CompareTag("Enemy"))
-            {
-                health.GetHit(SwordDamage, transform.parent.parent.gameObject);                
-            }else return;
+            enemiesToDamage[i].GetComponent<Health>().GetHit(SwordDamage, transform.parent.parent.gameObject);
         }
     }
 }

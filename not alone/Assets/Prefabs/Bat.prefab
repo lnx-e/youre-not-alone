@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 6052158652771058961}
   - component: {fileID: 6052158652771058962}
   - component: {fileID: 6814783794205818667}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bat
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -32,7 +32,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6052158652771058969}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.19, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -175,7 +175,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 6052158652771058962}
-  eHealth: 3
+  eHealth: 1
+  needsRotation: 0
   attackDamage: 0.05
 --- !u!114 &6052158652771058962
 MonoBehaviour:
@@ -193,7 +194,9 @@ MonoBehaviour:
   maxHealth: 0
   isDead: 0
   coin: {fileID: 8258607476217117538, guid: 1f3766ddb7a47b141841fb49ee529b9e, type: 3}
+  enemy: {fileID: 6052158652771058969}
   flashEffect: {fileID: 6052158652946662584}
+  animator: {fileID: 6052158652946662585}
 --- !u!114 &6814783794205818667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,9 +225,10 @@ GameObject:
   - component: {fileID: 6052158652946662586}
   - component: {fileID: 6052158652946662585}
   - component: {fileID: 6052158652946662584}
-  m_Layer: 0
+  - component: {fileID: 3559115549814061029}
+  m_Layer: 7
   m_Name: bat_sprite_2
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -330,6 +334,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashMaterial: {fileID: 2100000, guid: a034a4e0737c14742be3f69ceb83e35e, type: 2}
   duration: 0.13
+--- !u!58 &3559115549814061029
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6052158652946662564}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.16
 --- !u!1 &7421674985756489796
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,7 +360,7 @@ GameObject:
   m_Component:
   - component: {fileID: 954293526417318629}
   - component: {fileID: 7160438401413251134}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ExclamationMark_0 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

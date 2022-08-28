@@ -10,6 +10,8 @@ public class Timer : MonoBehaviour
 
     public TextMeshProUGUI timerText;
 
+    public GameObject NPCMessage;
+
     private void Start()
     {
         timeOn = true;
@@ -27,10 +29,12 @@ public class Timer : MonoBehaviour
             else
             {
                 Debug.Log("time over");
+                NPCMessage.GetComponent<NPCMessage>().OpenCave();
                 timeLeft = 0;
                 timeOn = false;
+                
             }
-            
+
         }
 
         void UpdateTimer(float currentTime)

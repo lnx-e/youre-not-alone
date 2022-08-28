@@ -12,11 +12,14 @@ public class Health : MonoBehaviour
     private bool isDead = false;
 
     public GameObject coin;
+    public GameObject enemy;
 
     [SerializeField]
     private SimpleFlash flashEffect;
 
     public Animator animator;
+
+
 
     public void InitializeHealth(int healthValue)
     {
@@ -44,8 +47,11 @@ public class Health : MonoBehaviour
         {
             isDead = true;
             animator.SetTrigger("Death");
-            Destroy(gameObject, 0.4f);
-            Instantiate(coin, transform.position, Quaternion.identity);
+            Destroy(gameObject, 0.5f);
+            Instantiate(coin, transform.position, Quaternion.identity);            
         }
     }
+
+    
+   
 }
