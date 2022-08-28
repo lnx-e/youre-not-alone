@@ -18,6 +18,7 @@ public class CoinCollector : MonoBehaviour
         if (other.CompareTag("Coins"))
         {
             scoreManagerScript.newScore = other.GetComponent<coin>().CoinValue;
+            FindObjectOfType<AudioManager>().Player("CoinPickup");
             Destroy(other.gameObject);
         }
     }

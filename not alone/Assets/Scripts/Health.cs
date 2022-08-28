@@ -43,6 +43,7 @@ public class Health : MonoBehaviour
         else
         {
             isDead = true;
+            FindObjectOfType<AudioManager>().Player("EnemyDamage");
             Destroy(gameObject);
             Instantiate(coin, transform.position, Quaternion.identity);
         }
