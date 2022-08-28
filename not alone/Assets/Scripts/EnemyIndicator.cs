@@ -41,7 +41,6 @@ public class EnemyIndicator : MonoBehaviour
                 rayColor = Color.red;
             }
             Debug.DrawRay(transform.position, direction, rayColor);
-            Debug.Log(ray.point);                      
 
         }
         else

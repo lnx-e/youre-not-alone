@@ -12,6 +12,8 @@ public class WeaponParent : MonoBehaviour
     public float radius;
 
     public int SwordDamage;
+    public AudioSource whoosh;
+
 
 
     private void Start()
@@ -21,7 +23,8 @@ public class WeaponParent : MonoBehaviour
 
     public void Attack()
     {
-        Animator.SetTrigger("Attack");    
+        Animator.SetTrigger("Attack");
+        whoosh.Play();
     }
 
     private void OnDrawGizmosSelected()
