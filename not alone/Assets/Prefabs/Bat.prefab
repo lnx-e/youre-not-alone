@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 6052158652771058975}
   - component: {fileID: 6052158652771058968}
   - component: {fileID: 6052158652771058973}
-  - component: {fileID: 3818068185806295297}
+  - component: {fileID: 6052158652771058960}
   - component: {fileID: 6052158652771058972}
   - component: {fileID: 6052158652771058961}
   - component: {fileID: 6052158652771058962}
   - component: {fileID: 6814783794205818667}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Bat
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ MonoBehaviour:
   radius: 0.38
   height: 0.19
   canMove: 1
-  maxSpeed: 1
+  maxSpeed: 2
   gravity: {x: 0, y: 0, z: 0}
   groundMask:
     serializedVersion: 2
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   target: {fileID: 7866325871298305459, guid: 889935d506025d644af1a2fc29f1822d, type: 3}
---- !u!50 &3818068185806295297
+--- !u!50 &6052158652771058960
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -135,16 +135,16 @@ Rigidbody2D:
   m_GameObject: {fileID: 6052158652771058969}
   m_BodyType: 0
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!58 &6052158652771058972
 CircleCollider2D:
@@ -175,8 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 6052158652771058962}
-  eHealth: 1
-  needsRotation: 0
+  eHealth: 3
   attackDamage: 0.05
 --- !u!114 &6052158652771058962
 MonoBehaviour:
@@ -195,7 +194,6 @@ MonoBehaviour:
   isDead: 0
   coin: {fileID: 8258607476217117538, guid: 1f3766ddb7a47b141841fb49ee529b9e, type: 3}
   flashEffect: {fileID: 6052158652946662584}
-  animator: {fileID: 6052158652946662585}
 --- !u!114 &6814783794205818667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,10 +222,9 @@ GameObject:
   - component: {fileID: 6052158652946662586}
   - component: {fileID: 6052158652946662585}
   - component: {fileID: 6052158652946662584}
-  - component: {fileID: 6651024044438660230}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: bat_sprite_2
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -332,23 +329,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flashMaterial: {fileID: 2100000, guid: a034a4e0737c14742be3f69ceb83e35e, type: 2}
-  duration: 0.3
---- !u!58 &6651024044438660230
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6052158652946662564}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.16
+  duration: 0.13
 --- !u!1 &7421674985756489796
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,7 +340,7 @@ GameObject:
   m_Component:
   - component: {fileID: 954293526417318629}
   - component: {fileID: 7160438401413251134}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ExclamationMark_0 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
