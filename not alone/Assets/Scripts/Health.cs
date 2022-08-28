@@ -16,6 +16,8 @@ public class Health : MonoBehaviour
     [SerializeField]
     private SimpleFlash flashEffect;
 
+    public Animator animator;
+
     public void InitializeHealth(int healthValue)
     {
         currentHealth = healthValue;
@@ -30,8 +32,6 @@ public class Health : MonoBehaviour
         if (sender.layer == gameObject.layer)
             return;
 
-        Vector2 postion = transform.position;
-
         currentHealth -= amount;
 
         flashEffect.Flash();
@@ -43,7 +43,8 @@ public class Health : MonoBehaviour
         else
         {
             isDead = true;
-            Destroy(gameObject);
+            animator.SetTrigger("Death");
+            Destroy(gameObject, 0.4f);
             Instantiate(coin, transform.position, Quaternion.identity);
         }
     }

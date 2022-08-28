@@ -10,6 +10,7 @@ public class WeaponParent : MonoBehaviour
 
     public Transform circleOrigin;
     public float radius;
+    public LayerMask whatIsEnemies;
 
     public int SwordDamage;
 
@@ -33,7 +34,7 @@ public class WeaponParent : MonoBehaviour
 
     public void DetectColliders()
     {
-        foreach(Collider2D collider in Physics2D.OverlapCircleAll(circleOrigin.position, radius))
+        foreach(Collider2D collider in Physics2D.OverlapCircleAll(circleOrigin.position, radius, whatIsEnemies))
         {
             Health health = collider.gameObject.GetComponent<Health>();
             if (collider.CompareTag("Enemy"))

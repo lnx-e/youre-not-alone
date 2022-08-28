@@ -18,7 +18,9 @@ public class CoinCollector : MonoBehaviour
         if (other.CompareTag("Coins"))
         {
             scoreManagerScript.newScore = other.GetComponent<coin>().CoinValue;
-            Destroy(other.gameObject);
+            other.GetComponentInChildren<Animator>().SetTrigger("Death");
+            
+            Destroy(other.gameObject, 0.4f);
         }
     }
 }
