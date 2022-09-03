@@ -22,7 +22,7 @@ public class WeaponParent : MonoBehaviour
 
     public void Attack()
     {
-        Animator.SetTrigger("Attack");    
+        Animator.SetTrigger("Attack");
     }
 
     private void OnDrawGizmosSelected()
@@ -36,16 +36,15 @@ public class WeaponParent : MonoBehaviour
     {
         //foreach(Collider2D collider in Physics2D.OverlapCircleAll(circleOrigin.position, radius, whatIsEnemies))
         //{
-        //    Health health = collider.gameObject.GetComponent<Health>();
-        //    if (collider.CompareTag("Enemy"))
-        //    {
-        //        Debug.Log(collider.name);
-        //        health.GetHit(SwordDamage, transform.parent.parent.gameObject);                
+        //   Health health = collider.gameObject.GetComponent<Health>();
+        //   if (collider.CompareTag("Enemy"))
+        //   {
+        //       Debug.Log(collider.name);
+        //       health.GetHit(SwordDamage, transform.parent.parent.gameObject);                
         //    }else return;
         //}
-        
         Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(circleOrigin.position, radius, whatIsEnemies);
-        for(int i = 0; i < enemiesToDamage.Length; i++)
+        for (int i = 0; i < enemiesToDamage.Length; i++)
         {
             enemiesToDamage[i].GetComponent<Health>().GetHit(SwordDamage, transform.parent.parent.gameObject);
         }

@@ -3,11 +3,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [System.Serializable]
-
 public class Wave
 
 {
-
     public string waveName;
 
     public int noOfEnemies;
@@ -15,18 +13,14 @@ public class Wave
     public GameObject[] typeOfEnemies;
 
     public float spawnInterval;
-
 }
 
 public class SpawnManager : MonoBehaviour
 
 {
-
     public Wave[] waves;
 
     public Transform[] spawnPoints;
-
-    
 
     private Wave currentWave;
 
@@ -36,13 +30,18 @@ public class SpawnManager : MonoBehaviour
 
     private bool canSpawn = true;
 
-
-
+    private void Start()
+    {
+        GameObject[] spawnPointsGB = GameObject.FindGameObjectsWithTag("SpawnPoints");
+        spawnPoints = new Transform[spawnPointsGB.Length];
+        for (int i = 0; i < spawnPointsGB.Length; i++)
+        {
+            spawnPoints[i] = spawnPointsGB[i].transform;
+        }
+    }
 
     private void Update()
-
     {
-
         currentWave = waves[currentWaveNumber];
 
         SpawnWave();
@@ -52,37 +51,23 @@ public class SpawnManager : MonoBehaviour
         if (totalEnemies.Length == 0)
 
         {
-
             if (currentWaveNumber + 1 != waves.Length)
 
             {
-
                 currentWaveNumber++;
 
                 canSpawn = true;
-
-
             }
             else
             {
             }
-
         }
-
-
-
     }
 
-    
-
-    void SpawnWave()
-
+    private void SpawnWave()
     {
-
         if (canSpawn && nextSpawnTime < Time.time)
-
         {
-
             GameObject randomEnemy = currentWave.typeOfEnemies[Random.Range(0, currentWave.typeOfEnemies.Length)];
 
             Transform randomPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
@@ -98,11 +83,6 @@ public class SpawnManager : MonoBehaviour
             {
                 canSpawn = false;
             }
-
         }
-
-
-
     }
-
 }

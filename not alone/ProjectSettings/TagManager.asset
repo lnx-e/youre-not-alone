@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - Coins
   - VisionCone
+  - SpawnPoints
+  - Spotlight
   layers:
   - Default
   - TransparentFX
