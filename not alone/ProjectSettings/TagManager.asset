@@ -8,7 +8,6 @@ TagManager:
   - Coins
   - VisionCone
   - SpawnPoints
-  - Spotlight
   layers:
   - Default
   - TransparentFX

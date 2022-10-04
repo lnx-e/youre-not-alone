@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class WeaponParent : MonoBehaviour
 {
     public GameObject myPlayer;
+    public GameObject weapon;
     public Animator Animator;
     public Player player;
 
@@ -14,10 +16,11 @@ public class WeaponParent : MonoBehaviour
 
     public int SwordDamage;
 
+    public Collider2D[] enemiesToDamage;
 
     private void Start()
     {
-        SwordDamage = player.pDamage;
+        SwordDamage = player.pDamage;       
     }
 
     public void Attack()
@@ -32,21 +35,16 @@ public class WeaponParent : MonoBehaviour
         Gizmos.DrawWireSphere(position, radius);
     }
 
-    public void DetectColliders()
+    public void TurnONColliders()
     {
-        //foreach(Collider2D collider in Physics2D.OverlapCircleAll(circleOrigin.position, radius, whatIsEnemies))
-        //{
-        //   Health health = collider.gameObject.GetComponent<Health>();
-        //   if (collider.CompareTag("Enemy"))
-        //   {
-        //       Debug.Log(collider.name);
-        //       health.GetHit(SwordDamage, transform.parent.parent.gameObject);                
-        //    }else return;
-        //}
-        Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(circleOrigin.position, radius, whatIsEnemies);
-        for (int i = 0; i < enemiesToDamage.Length; i++)
-        {
-            enemiesToDamage[i].GetComponent<Health>().GetHit(SwordDamage, transform.parent.parent.gameObject);
-        }
+       
+        weapon.GetComponent<BoxCollider2D>().enabled = true;
     }
+
+    public void TurnOFFCollider()
+    {
+        weapon.GetComponent<BoxCollider2D>().enabled = false;
+
+    }
+
 }

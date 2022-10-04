@@ -11,17 +11,14 @@ public class Game : MonoBehaviour
 
     private void Awake()
     {
-        GameObject.FindGameObjectWithTag("Player").GetComponent<AgentMovement>().enabled = false;
-        StartCoroutine("");
-
-
+        Instantiate(player, GameObject.Find("playerSpawner").transform);
     }
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        Instantiate(player, playerSpawn.transform);
         Instantiate(enemy, GameObject.Find("enemySpawner").transform);
+
     }
 
     private void Update()
@@ -31,5 +28,4 @@ public class Game : MonoBehaviour
             Application.Quit();
         }
     }
-
 }
